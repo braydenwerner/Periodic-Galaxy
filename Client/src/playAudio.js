@@ -3,7 +3,6 @@ import { getAudio } from "./assetLoader.js";
 const AUDIO = getAudio();
 
 export function playerShoot(shipType) {
-  console.log(shipType);
   let shootAudio;
   if (
     shipType === "valkyrie" ||
