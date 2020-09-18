@@ -1,0 +1,239 @@
+@import url(https://fonts.googleapis.com/css?family=Fjalla+One);
+@font-face {
+  font-family: "press_startregular";
+  src: url("./fonts/prstart-webfont.woff2") format("woff2"),
+    url("./fonts/prstart-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+html,
+body,
+input,
+button {
+  user-select: none;
+  font-family: "press_startregular", sans-serif;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+.github {
+  top: 50%; /* your required value */
+  left: 100px;
+  height: 100%;
+  position: fixed;
+}
+
+.joinOuterContainer {
+  width: "100%";
+  background: #171c22;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  text-align: center;
+  height: 100vh;
+  align-items: center;
+}
+
+.loginContainer {
+  min-width: 400px;
+  width: 20%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.joinInput {
+  position: relative;
+  animation: signInAnimationRight ease 1s;
+  animation-fill-mode: forwards;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  font-size: 20px;
+  border: 1px solid #fff;
+  background: none;
+  padding: 10px 1px;
+  cursor: pointer;
+  outline: none;
+  width: 99%;
+}
+
+@media screen and (min-width: 810px) {
+  .titleText {
+    font-size: 170.5px;
+  }
+}
+
+@media screen and (max-width: 810px) {
+  .titleText {
+    font-size: 120.5px;
+  }
+}
+
+@media screen and (max-width: 570px) {
+  .titleText {
+    font-size: 70.5px;
+  }
+}
+
+.titleText {
+  position: relative;
+  animation: titleAnimation ease 2s;
+  animation-fill-mode: forwards;
+  color: white;
+  padding-bottom: 10px;
+  border-bottom: 2px solid white;
+}
+
+@keyframes titleAnimation {
+  0% {
+    opacity: 0;
+    top: -700px;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 1;
+    top: 0px;
+  }
+}
+
+.tipText {
+  color: white;
+  padding-bottom: 10px;
+  border-bottom: 2px solid white;
+}
+
+#tip {
+  opacity: 1;
+  transition: opacity 1s;
+}
+
+#tip.fade {
+  opacity: 0;
+}
+
+#userProfileContainer {
+  min-width: 400px;
+  width: 40%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+#signInPlaceholder {
+  min-width: 400px;
+  position: relative;
+  animation: signInAnimationFarLeft ease 2s;
+  animation-fill-mode: forwards;
+}
+
+#googleSignIn {
+  position: relative;
+  animation: signInAnimationRight ease 1s;
+  animation-fill-mode: forwards;
+  margin-top: 50px;
+}
+
+#submitUser,
+#signOutButton {
+  outline: none;
+  position: relative;
+  animation: signInAnimationLeft ease 1s;
+  animation-fill-mode: forwards;
+  font-size: 1.5rem;
+  color: #fff;
+  border: 2px solid #fff;
+  background: none;
+  padding: 25px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.button {
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+#signInPlaceholder {
+  color: white;
+  font-size: 20px;
+}
+
+#imageElement {
+  position: relative;
+  animation: signInAnimationFarLeft ease 2s;
+  animation-fill-mode: forwards;
+}
+
+#emailElement,
+#killsElement {
+  position: relative;
+  animation: signInAnimationFarLeft ease 2s;
+  animation-fill-mode: forwards;
+  color: white;
+  font-size: 20px;
+  width: 100%;
+}
+
+#signOutButton {
+  display: none;
+  position: relative;
+  animation: signInAnimationFarLeft ease 2s;
+  animation-fill-mode: forwards;
+  width: 300px;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  font-size: 20px;
+  cursor: pointer;
+  border-radius: 34px;
+  padding: 10px;
+  margin-bottom: 50px;
+}
+
+@keyframes signInAnimationLeft {
+  0% {
+    left: 1000px;
+  }
+  100% {
+    left: 0px;
+  }
+}
+
+@keyframes signInAnimationFarLeft {
+  0% {
+    left: 2000px;
+  }
+  100% {
+    left: 0px;
+  }
+}
+
+@keyframes signInAnimationRight {
+  0% {
+    right: 1000px;
+  }
+  100% {
+    right: 0px;
+  }
+}
+
+#display {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: crosshair;
+  background: black;
+}

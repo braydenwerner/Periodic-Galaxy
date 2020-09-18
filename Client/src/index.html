@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PG.IO</title>
+  <script defer src="https://pgio.herokuapp.com/socket.io/socket.io.js"></script>
+  <script defer type="module" src="./app.js"></script>
+  <link rel="shortcut icon" type="image/png" href="Images/stinger.png">
+  <link rel="stylesheet" type="text/css" href="./css/app.css">
+
+  <meta name="google-signin-client_id"
+    content="432858142639-8mnggj4si23l52btgv5frhva6l58ftvm.apps.googleusercontent.com">
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+</head>
+
+<body>
+  <a class="github" href="https://github.com/" target="_blank">
+    <img width="100px" height="100px" src="Images/github.png" />
+  </a>
+
+  <audio id="audio" loop="loop"></audio>
+  <canvas id="display"></canvas>
+  <div class="joinOuterContainer" id="loginForm">
+    <div class="loginContainer">
+      <h1 class="titleText">PG.IO</h1>
+      <div class="tipText" id="tip">Hold spacebar to shoot!</div>
+      <Input class="joinInput" id="userInput" placeholder="Enter Username" autocomplete="off" maxlength="15"></Input>
+      <button type="button" class="button" id="submitUser">Enter Game</button>
+      <div id="googleSignIn" class="g-signin2" data-onsuccess="onSignIn" data-width="255" data-height="50"
+        data-longtitle="true" data-theme="dark"></div>
+    </div>
+
+    <div id="userProfileContainer">
+      <h1 id="signInPlaceholder"> Sign In With Google to See Profile </h1>
+      <div id="profileAttributes" style="display: none">
+        <img id="imageElement">
+        <h1 id="emailElement"></h1>
+        <h1 id="killsElement"></h1>
+      </div>
+      <button class="button" id="signOutButton" href="#" onclick="signOut();">Sign out</button>
+    </div>
+  </div>
+  </div>
+
+  <script>
+    //Login user with Google, display information on main page
+    function onSignIn(googleUser) {
+      var profile = googleUser.getBasicProfile();
+      let id = profile.getId();
+      let name = profile.getName();
+      let email = profile.getEmail();
+      let imageUrl = profile.getImageUrl();
+
+      displayUser();
+      async function displayUser() {
+        await addUser();
+        getUser();
+      }
+
+      async function addUser() {
+        console.log("Adding.");
+        await fetch("https://pgio.herokuapp.com/addUser", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            id: `${id}`,
+            name: `${name}`,
+            email: `${email}`,
+            kills: "0",
+          }),
+        });
+      }
+
+      async function getUser() {
+        console.log('Attemping to retrieve user');
+        let data = await fetch(`https://pgio.herokuapp.com/userId/${id}`);
+
+        let users = await data.json();
+        console.log(users);
+        displayProfile(users);
+      }
+
+      function displayProfile(users) {
+        document.getElementById("signInPlaceholder").style.display = "none";
+
+        let user = users[0];
+
+        let imageElement = document.getElementById("imageElement");
+        imageElement.src = profile.getImageUrl();
+
+        let emailElement = document.getElementById("emailElement");
+        emailElement.innerText = user.email + "'s Profile";
+
+        let killsElement = document.getElementById("killsElement");
+        killsElement.innerText = "Kills: " + user.kills;
+      }
+
+      document.getElementById("signOutButton").style.display = "initial"
+      document.getElementById("profileAttributes").style.display = "initial";
+    }
+
+    function signOut() {
+      var auth2 = gapi.auth2.getAuthInstance();
+      auth2.signOut().then(function () {
+        console.log("User signed out.");
+        document.getElementById("signInPlaceholder").style.display = "initial";
+        document.getElementById("profileAttributes").style.display = "none";
+        document.getElementById("signOutButton").style.display = "none"
+      });
+    }
+  </script>
+</body>
+
+</html>
