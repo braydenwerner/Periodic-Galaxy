@@ -26,11 +26,6 @@ Promise.all([connect(onGameOver), downloadImages(), downloadAudios()]).then(
       loginForm.style.display = "none";
       canvas.style.display = "initial";
 
-      //play some aryan kapoor <3
-      //let gameMusic = document.getElementById("audio");
-      //gameMusic.src = "./audio/Aryan Kapoor & TVT- She Don’t Know (Music Video).mp3";
-      //gameMusic.play();
-
       let profilePicture;
       if (document.getElementById("imageElement")) {
         profilePicture = document.getElementById("imageElement").src;

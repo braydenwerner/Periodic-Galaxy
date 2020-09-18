@@ -8,7 +8,6 @@ import {
 } from "./playAudio.js";
 
 const ENDPOINT = "https://pgio.herokuapp.com/";
-//const ENDPOINT = "http://localhost:4000";
 
 // eslint-disable-next-line
 const socket = io(ENDPOINT);
