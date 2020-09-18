@@ -33,14 +33,11 @@ app.get("/userId/:id", (req, res) => {
 
 app.post("/addUser", (req, res) => {
   database.addUser(req.body.id, req.body.name, req.body.email, 0);
-  return res.json("Recieved POST request");
+  return res.json("Recieved request");
 });
 
 io.on("connection", (socket) => {
-  console.log("Player connected!", socket.id);
-
   socket.on("/play", (userData) => {
-    console.log("Adding player!");
     game.addPlayer(socket, userData);
   });
 
@@ -69,4 +66,3 @@ const game = new Game();
 
 const PORT = process.env.PORT || 4000;
 server.listen(PORT);
-console.log(`Server listening on port ${PORT}`);

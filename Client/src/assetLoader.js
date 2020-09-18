@@ -25,12 +25,11 @@ function downloadImage(imageName) {
   return new Promise((resolve) => {
     const image = new Image();
     image.onload = () => {
-      console.log(`READY ${imageName}`);
       images[imageName] = image;
       resolve();
     };
 
-    image.src = `./Images/${imageName}`;
+    image.src = `../Images/${imageName}`;
   });
 }
 
@@ -55,8 +54,7 @@ function downloadAudio(audioName) {
   return new Promise((resolve) => {
     const audio = new Audio();
     audioObject[audioName] = audio;
-    audio.src = `./audio/${audioName}`;
-    console.log(`READY ${audioName}`);
+    audio.src = `../audio/${audioName}`;
     resolve();
   });
 }

@@ -22,7 +22,6 @@ function addUser(id, name, email, kills) {
 }
 
 function addKill(email) {
-  console.log("adding kill to", email);
   pool.query(`UPDATE users SET kills = kills + 1 WHERE email = "${email}"`);
 }
 

@@ -15,7 +15,6 @@ const socket = io(ENDPOINT);
 
 const connectedPromise = new Promise((resolve) => {
   socket.on("connect", () => {
-    console.log("Connected to server!");
     resolve();
   });
 });
@@ -33,7 +32,6 @@ export const connect = (onGameOver) =>
   });
 
 export const play = (userData) => {
-  console.log("Emitting play request to the server!");
   socket.emit("/play", userData);
 };
 

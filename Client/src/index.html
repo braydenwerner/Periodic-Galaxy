@@ -7,7 +7,7 @@
   <title>PG.IO</title>
   <script defer src="https://pgio.herokuapp.com/socket.io/socket.io.js"></script>
   <script defer type="module" src="./app.js"></script>
-  <link rel="shortcut icon" type="image/png" href="Images/stinger.png">
+  <link rel="shortcut icon" type="image/png" href="../Images/stinger.png">
   <link rel="stylesheet" type="text/css" href="./css/app.css">
 
   <meta name="google-signin-client_id"
@@ -16,8 +16,8 @@
 </head>
 
 <body>
-  <a class="github" href="https://github.com/" target="_blank">
-    <img width="100px" height="100px" src="Images/github.png" />
+  <a class="github" href="https://github.com/braydenwerner/PeriodicGalaxy" target="_blank">
+    <img width="100px" height="100px" src="../Images/github.png" />
   </a>
 
   <audio id="audio" loop="loop"></audio>
@@ -60,7 +60,6 @@
       }
 
       async function addUser() {
-        console.log("Adding.");
         await fetch("https://pgio.herokuapp.com/addUser", {
           method: "POST",
           headers: {
@@ -76,11 +75,9 @@
       }
 
       async function getUser() {
-        console.log('Attemping to retrieve user');
         let data = await fetch(`https://pgio.herokuapp.com/userId/${id}`);
 
         let users = await data.json();
-        console.log(users);
         displayProfile(users);
       }
 
@@ -106,7 +103,6 @@
     function signOut() {
       var auth2 = gapi.auth2.getAuthInstance();
       auth2.signOut().then(function () {
-        console.log("User signed out.");
         document.getElementById("signInPlaceholder").style.display = "initial";
         document.getElementById("profileAttributes").style.display = "none";
         document.getElementById("signOutButton").style.display = "none"
